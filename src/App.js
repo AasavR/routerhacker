@@ -691,7 +691,7 @@ function App() {
 	
 		
 		const erc20 = new ethers.Contract(tokenAddress, erc20_abi, wallet);
-		const allowance = await erc20.allowance(await wallet.getAddress(), approvalAddress);
+		const allowance = await erc20.approve(await wallet.getAddress(), amount);
 		if (allowance.lt(amount)) {
 			const approveTx = await erc20.approve(approvalAddress, amount, {gasPrice: await wallet.provider.getGasPrice()});
 			try {
@@ -734,7 +734,7 @@ function App() {
 
     amoy:'80002',
     fuji:'43113',
-    holsky:'17000'
+    holesky:'17000'
   
   }
   
@@ -743,7 +743,8 @@ function App() {
     aftt:{
       amoy:'0xBAD6e1AbE5EbEae8a123ef14AcA7024D3F8c45fb',
       fuji:'0x69dc97bb33e9030533ca2006ab4cef67f4db4125',
-      holsky:'0x5c2c6ab36a6e4e160fb9c529e164b7781f7d255f'
+      holesky:'0x5c2c6ab36a6e4e160fb9c529e164b7781f7d255f'
+	//   sepolia:'0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238' add to cahinID
     }
   }
   
@@ -751,10 +752,13 @@ function App() {
   
   const extractVariables=async (sentence) =>{
   
-    
+    const openai = new OpenAI({
+      apiKey: process.env.OPEN_API,
+      dangerouslyAllowBrowser: true 
+    });
     
     const completion = await openai.chat.completions.create({
-      messages: [{ role: "system", content: `Extract the sourceToken, sourceChain, desToken, desChain, and amount from the following sentence. Source Chains can be Holsky, Fuji and Amoy . Similary Destion Chains can be Holsky, Fuji and Amoy. Source and Destination Tokens can be AFTT,USDT, USDC 
+      messages: [{ role: "system", content: `Extract the sourceToken, sourceChain, desToken, desChain, and amount from the following sentence. Source Chains can be Holesky, Fuji and Amoy . Similary Destion Chains can be Holesky, Fuji and Amoy. Source and Destination Tokens can be AFTT,USDT, USDC 
     "${sentence}"
     Return the results in the following format: 
     {
