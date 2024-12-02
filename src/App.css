@@ -1,64 +1,158 @@
+/* General body styles */
+body {
+  margin: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6));
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+}
 
-
-
-
+/* Centered layout for the app */
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 92vh;
+  padding: 20px;
+  background-color: #92b7f7; /* Adds a translucent overlay for readability */
+  backdrop-filter: blur(5px); /* Optional blur effect */
 }
 
-.App-link {
-  color: #61dafb;
+/* App header styling */
+.App-header {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #c5c5c5;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Chat container styles */
+.chat-container {
+  width: 90%;
+  max-width: 600px;
+  background: #1e1e1e; /* Slightly lighter dark background */
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow */
 }
 
+/* Chat box styles */
+.chat-box {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto; /* Enables scrolling for long conversations */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scrollbar-width: thin; /* Thin scrollbar for modern browsers */
+  scrollbar-color: #555 #1e1e1e; /* Custom scrollbar color */
+}
+
+/* Scrollbar styling for WebKit browsers */
+.chat-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 3px;
+}
+
+.chat-box::-webkit-scrollbar-track {
+  background-color: #1e1e1e;
+}
+
+/* Message bubble styles */
+.message {
+  max-width: 75%; /* Limits bubble width */
+  padding: 10px 15px;
+  border-radius: 15px;
+  line-height: 1.4;
+  font-size: 1rem;
+}
+
+/* User message bubble */
+.conversation.user {
+  align-self: flex-end; /* Aligns to the right */
+  background-color: #0066cc; /* Blue background for user messages */
+  color: white; /* White text */
+}
+
+/* Bot message bubble */
+.conversation.assistant {
+  align-self: flex-start; /* Aligns to the left */
+  background-color: #333; /* Darker background for bot messages */
+  color: #c5c5c5; /* Grey text */
+}
+
+/* Input container styles */
+.chat-input-container {
+  display: flex;
+  padding: 10px;
+}
+
+/* Input field styles */
+.chat-input {
+  flex: 1; /* Takes up available space */
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  background-color: #1e1e1e; /* Dark background for input */
+  color: #fff;
+  font-size: 1rem;
+  margin-right: 10px; /* Adds spacing between input and button */
+}
+
+.chat-input::placeholder {
+  color: #aaa; /* Grey placeholder text */
+}
+
+/* Send button styles */
+.send-button {
+  padding: 5px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #0066cc; /* Blue button */
+  color: #fff; /* White text */
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+  background-color: #0055aa; /* Darker blue on hover */
+}
+
+.send-button:active {
+  background-color: #004499; /* Even darker blue on click */
+  transform: scale(0.98); /* Slight click effect */
+}
+
+/* Existing button styling (unchanged) */
 .button-17 {
   align-items: center;
   appearance: none;
   background-color: #fff;
   border-radius: 24px;
   border-style: none;
-  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px, rgba(0, 0, 0, 0.14) 0 6px 10px 0,
+    rgba(0, 0, 0, 0.12) 0 1px 18px 0;
   box-sizing: border-box;
   color: #3c4043;
   cursor: pointer;
   display: inline-flex;
   fill: currentcolor;
-  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
   font-size: 14px;
   font-weight: 500;
   height: 48px;
   justify-content: center;
-  letter-spacing: .25px;
+  letter-spacing: 0.25px;
   line-height: normal;
   max-width: 100%;
   overflow: visible;
@@ -66,92 +160,112 @@
   position: relative;
   text-align: center;
   text-transform: none;
-  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1), opacity 15ms linear 30ms,
+    transform 270ms cubic-bezier(0, 0, 0.2, 1) 0ms;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   width: auto;
-  will-change: transform,opacity;
+  will-change: transform, opacity;
   z-index: 0;
 }
 
 .button-17:hover {
-  background: #F6F9FE;
+  background: #f6f9fe;
   color: #174ea6;
 }
 
 .button-17:active {
-  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
+    0 8px 12px 6px rgb(60 64 67 / 15%);
   outline: none;
 }
 
-.button-17:focus {
-  outline: none;
-  border: 2px solid #4285f4;
+/* Animation and link styles */
+.App-link {
+  color: #61dafb;
 }
 
-.button-17:not(:disabled) {
-  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
-}
-
-.button-17:not(:disabled):hover {
-  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
-}
-
-.button-17:not(:disabled):focus {
-  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
-}
-
-.button-17:not(:disabled):active {
-  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
-}
-
-.button-17:disabled {
-  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
-}
-
-
-
-.button-28 {
-  appearance: none;
-  background-color: transparent;
-  border: 2px solid #1A1A1A;
-  border-radius: 15px;
-  box-sizing: border-box;
-  color: #3B3B3B;
-  cursor: pointer;
-  display: inline-block;
-  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-  font-size: 16px;
-  font-weight: 600;
-  line-height: normal;
-  margin: 0;
-  min-height: 60px;
-  min-width: 0;
-  outline: none;
-  padding: 16px 24px;
-  text-align: center;
-  text-decoration: none;
-  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+.chat-box {
   width: 100%;
-  will-change: transform;
+  max-width: 600px;
+  margin: auto;
+  border: 1px solid #021329;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #021730;
+  height: 500px;
+  overflow-y: scroll; /* Enable scrolling for long conversations */
+  display: flex;
+  flex-direction: column;
 }
 
-.button-28:disabled {
-  pointer-events: none;
+.chat-box .user {
+  align-self: flex-end; /* Align user messages to the right */
+  background-color: #007bff; /* User message background color */
+  color: white;
+  padding: 10px 15px;
+  margin: 5px 0;
+  border-radius: 15px 15px 0 15px; /* Rounded corners */
+  max-width: 70%; /* Limit the width of messages */
 }
 
-.button-28:hover {
-  color: #fff;
-  background-color: #1A1A1A;
-  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-  transform: translateY(-2px);
+.chat-box .assistant {
+  align-self: flex-start; /* Align assistant messages to the left */
+  background-color: #e9ecef; /* Assistant message background color */
+  color: black;
+  padding: 10px 15px;
+  margin: 5px 0;
+  border-radius: 15px 15px 15px 0; /* Rounded corners */
+  max-width: 70%; /* Limit the width of messages */
 }
 
-.button-28:active {
-  box-shadow: none;
-  transform: translateY(0);
+.chat-box::-webkit-scrollbar {
+  width: 6px; /* Width of the scrollbar */
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+  background: #ccc; /* Color of the scrollbar thumb */
+  border-radius: 3px; /* Roundness of the scrollbar thumb */
+}
+
+.chat-box::-webkit-scrollbar-thumb:hover {
+  background: #aaa; /* Darker color when hovered */
+}
+
+.chat-box::-webkit-scrollbar-track {
+  background: #f9f9f9; /* Color of the scrollbar track */
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 20px; /* Adjusts padding for better spacing */
+  font-size: 16px; /* Adjust font size */
+  font-weight: bold;
+  color: white; /* Text color */
+  background-color: #007bff; /* Primary blue background */
+  border: none; /* Removes the default border */
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: all 0.3s ease-in-out; /* Smooth hover effects */
+  margin-bottom: 20px;
+}
+
+.button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.button:active {
+  background-color: #003f7f; /* Even darker blue when clicked */
+  transform: scale(0.98); /* Slight shrink on click */
+}
+
+.button:disabled {
+  background-color: #cccccc; /* Gray background for disabled state */
+  color: #666666; /* Dimmed text color */
+  cursor: not-allowed; /* Disabled cursor */
+  box-shadow: none; /* Removes shadow for disabled button */
 }
